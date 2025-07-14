@@ -1,60 +1,62 @@
-// document.addEventListener("DOMContentLoaded", () => {
-//     const inputField = document.getElementById("input");
-//     inputField.addEventListener("keydown", (e) => {
-//       if (e.code === "Enter") {
-//         let input = inputField.value;
-//         inputField.value = "";
-//         output(input);
-//       }
-//     });
-//   });
-
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   const inputField = document.getElementById("input");
-//   const sendBtn = document.getElementById("send-btn");
-  
-
-//   function handleInput() {
-//     let input = inputField.value;
-//     if (input.trim() === "") return;
-//     inputField.value = "";
-//     output(input);
-//   }
-
-
-
-//   inputField.addEventListener("keydown", (e) => {
-//     if (e.code === "Enter" || e.key === "Enter") {
-//       handleInput();
-//     }
-//   });
-// sendBtn.addEventListener("click", handleInput);
-// });
+document.addEventListener("DOMContentLoaded", () => {
+    const inputField = document.getElementById("input");
+    inputField.addEventListener("keydown", (e) => {
+      if (e.code === "Enter") {
+        let input = inputField.value;
+        inputField.value = "";
+        output(input);
+      }
+    });
+  });
 
 
 document.addEventListener("DOMContentLoaded", () => {
   const inputField = document.getElementById("input");
   const sendBtn = document.getElementById("send-btn");
+  
 
   function handleInput() {
-    const input = inputField.value.trim();
-    if (input !== "") {
-      inputField.value = "";
-      output(input);
-    }
+    let input = inputField.value;
+    if (input.trim() === "") return;
+    inputField.value = "";
+    output(input);
   }
 
-  inputField.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      handleInput();
-    }
-  });
 
-  sendBtn.addEventListener("click", () => {
-    handleInput();
-  });
+
+  inputField.addEventListener("keydown", (e) => {
+    if (e.code === "Enter" || e.key === "Enter") {
+      handleInput();
+    }
+  });
+sendBtn.addEventListener("click", handleInput);
 });
+
+
+// Possible and works for all device browsers:-
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const inputField = document.getElementById("input");
+//   const sendBtn = document.getElementById("send-btn");
+
+//   function handleInput() {
+//     const input = inputField.value.trim();
+//     if (input !== "") {
+//       inputField.value = "";
+//       output(input);
+//     }
+//   }
+
+//   inputField.addEventListener("keydown", (e) => {
+//     if (e.key === "Enter") {
+//       handleInput();
+//     }
+//   });
+
+//   sendBtn.addEventListener("click", () => {
+//     handleInput();
+//   });
+// });
 
   function output(input) {
     let product;
