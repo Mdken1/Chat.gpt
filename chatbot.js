@@ -22,22 +22,38 @@
 //     output(input);
 //   }
 
-document.getElementById("send-btn").addEventListener("click", () => {
-  const inputField = document.getElementById("input");
-  const input = inputField.value.trim();
-  if (input) {
-    inputField.value = "";
-    output(input);
-  }
-});
 
+
+//   inputField.addEventListener("keydown", (e) => {
+//     if (e.code === "Enter" || e.key === "Enter") {
+//       handleInput();
+//     }
+//   });
+// sendBtn.addEventListener("click", handleInput);
+// });
+
+
+ocument.addEventListener("DOMContentLoaded", () => {
+  const inputField = document.getElementById("input");
+  const sendBtn = document.getElementById("send-btn");
+
+  function handleInput() {
+    const input = inputField.value.trim();
+    if (input !== "") {
+      inputField.value = "";
+      output(input);
+    }
+  }
 
   inputField.addEventListener("keydown", (e) => {
-    if (e.code === "Enter" || e.key === "Enter") {
+    if (e.key === "Enter") {
       handleInput();
-    }
-  });
-sendBtn.addEventListener("click", handleInput);
+    }
+  });
+
+  sendBtn.addEventListener("click", () => {
+    handleInput();
+  });
 });
 
   function output(input) {
