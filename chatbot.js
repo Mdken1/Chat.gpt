@@ -33,7 +33,7 @@
 // });
 
 
-ocument.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const inputField = document.getElementById("input");
   const sendBtn = document.getElementById("send-btn");
 
