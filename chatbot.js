@@ -10,17 +10,27 @@
 //   });
 
 
-document.addEventListener("DOMContentLoaded", () => {
-  const inputField = document.getElementById("input");
-  const sendBtn = document.getElementById("send-btn");
+// document.addEventListener("DOMContentLoaded", () => {
+//   const inputField = document.getElementById("input");
+//   const sendBtn = document.getElementById("send-btn");
   
 
-  function handleInput() {
-    let input = inputField.value;
-    if (input.trim() === "") return;
+//   function handleInput() {
+//     let input = inputField.value;
+//     if (input.trim() === "") return;
+//     inputField.value = "";
+//     output(input);
+//   }
+
+document.getElementById("send-btn").addEventListener("click", () => {
+  const inputField = document.getElementById("input");
+  const input = inputField.value.trim();
+  if (input) {
     inputField.value = "";
     output(input);
   }
+});
+
 
   inputField.addEventListener("keydown", (e) => {
     if (e.code === "Enter" || e.key === "Enter") {
