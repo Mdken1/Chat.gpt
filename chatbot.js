@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const inputField = document.getElementById("input");
   const sendBtn = document.getElementById("send-btn");
+    const micBtn = document.getElementById('micBtn');
+const imgBtn = document.getElementById('imgBtn');
+const imageUpload = document.getElementById('imageUpload');
   
 
   function handleInput() {
@@ -146,6 +149,34 @@ sendBtn.addEventListener("click", handleInput);
   
   }
 
+
+
+// Voice input
+micBtn.onclick = () => {
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.lang = 'en-US';
+  recognition.start();
+
+  recognition.onresult = (event) => {
+    const text = event.results[0][0].transcript;
+    input.value = text;
+    sendBtn.click();
+  };
+};
+
+// Image upload
+imgBtn.onclick = () => imageUpload.click();
+
+imageUpload.onchange = (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    addMessage('user', reader.result, true);
+    botReply('Searching the image... (not functional yet)');
+  };
+  reader.readAsDataURL(file);
+};
   function output(input) {
     let product;
   
