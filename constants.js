@@ -186,7 +186,7 @@ async function handleUserInput(userInput) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${apiKey}`
+        "Authorization": `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`
       },
       body: JSON.stringify({
         model: "gpt-3.5-turbo",
