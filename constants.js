@@ -138,7 +138,7 @@ function addMessage(sender, text, isImage = false) {
     span.innerText = text;
   }
   const avatar = document.createElement('img');
-  avatar.src = sender === 'user' ? 'user.jpg' : 'bot.jpg';
+  avatar.src = sender === 'user' ? 'use.jpg' : 'chatbotimg.jpg';
   avatar.className = 'avatar';
   if (sender === 'user') {
     msgDiv.append(span, avatar);
@@ -180,13 +180,13 @@ async function output(input) {
 // ChatGPT API integration
 async function handleUserInput(userInput) {
   // You must use your own valid OpenAI API key here!
-  const apiKey = "sk-..."; // Replace with your actual API key
+  const apiKey = "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"; // Replace with your actual API key
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `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`
+        "Authorization": `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`
       },
       body: JSON.stringify({
         model: "gpt-3.5-turbo",
