@@ -101,13 +101,13 @@ function addChat(input, product) {
 
   let userDiv = document.createElement("div");
   userDiv.className = "user response";
-  userDiv.innerHTML = `<img src="user.jpg" class="avatar"><span>${input}</span>`;
+  userDiv.innerHTML = `<img src="use.jpg" class="avatar"><span>${input}</span>`;
   messagesContainer.appendChild(userDiv);
 
   let botDiv = document.createElement("div");
   let botImg = document.createElement("img");
   let botText = document.createElement("span");
-  botImg.src = "bot.jpg";
+  botImg.src = "chatbotimg.jpg";
   botImg.className = "avatar";
   botDiv.className = "bot response";
   botText.innerText = "Thinking...";
