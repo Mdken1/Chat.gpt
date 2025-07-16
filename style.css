@@ -1,7 +1,7 @@
 body {
-/*   background: linear-gradient(135deg, #e0e7ff 0%, #f0f4f9 100%);
-  */
-   background: #1e1e2f;
+  background: linear-gradient(135deg, #e0e7ff 0%, #f0f4f9 100%);
+ 
+/*    background: #1e1e2f; */
   font-family: 'Segoe UI', Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -68,7 +68,8 @@ body {
 }
 
 .response {
-  background: #e2e8f0;
+/*   background: #e2e8f0; */
+ background: #444;
   padding: 10px 14px;
   border-radius: 20px;
   font-size: 14px;
