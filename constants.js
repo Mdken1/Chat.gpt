@@ -138,7 +138,7 @@ function addMessage(sender, text, isImage = false) {
     span.innerText = text;
   }
   const avatar = document.createElement('img');
-  avatar.src = sender === 'user' ? 'user.jpg' : 'bot.jpg';
+  avatar.src = sender === 'user' ? 'use.jpg' : 'chatbotimg.jpg';
   avatar.className = 'avatar';
   if (sender === 'user') {
     msgDiv.append(span, avatar);
@@ -245,6 +245,28 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // Image upload
+  // imgBtn.onclick = () => imageUpload.click();
+
+  // imageUpload.onchange = (e) => {
+  //   const file = e.target.files[0];
+  //   if (!file) return;
+  //   const reader = new FileReader();
+  //   reader.onload = () => {
+  //     addMessage('user', reader.result, true);
+
+      // Open Google Lens for image search
+//       const googleLensUrl = `https://lens.google.com/upload`;
+//       window.open(googleLensUrl, '_blank');
+//       addMessage('bot', 'Searching Google for your image...');
+//     };
+//     reader.readAsDataURL(file);
+//   };
+// });
+
+
+
+
+   // Image upload
   imgBtn.onclick = () => imageUpload.click();
 
   imageUpload.onchange = (e) => {
@@ -253,12 +275,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const reader = new FileReader();
     reader.onload = () => {
       addMessage('user', reader.result, true);
-
-      // Open Google Lens for image search
-      const googleLensUrl = `https://lens.google.com/upload`;
-      window.open(googleLensUrl, '_blank');
-      addMessage('bot', 'Searching Google for your image...');
+      output("Image uploaded"); // Optionally trigger bot response
     };
     reader.readAsDataURL(file);
   };
 });
+imageUpload.onchange = (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    // Show the image in chat
+    addMessage('user', reader.result, true);
+
+    // Search Google Images with the uploaded image
+    // This uses Google Lens (works in Chrome)
+    const googleLensUrl = `https://lens.google.com/upload`;
+    // Open Google Lens upload page in a new tab
+    window.open(googleLensUrl, '_blank');
+    // Optionally, you can show a message in chat
+    addMessage('bot', 'Searching Google for your image...');
+  };
+  reader.readAsDataURL(file);
+};
+          imgBtn.onclick = () => imageUpload.click();
+
