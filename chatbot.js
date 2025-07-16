@@ -208,27 +208,9 @@ imageUpload.onchange = (e) => {
     }
 
       
-    imgBtn.onclick = () => imageUpload.click();
 
-imageUpload.onchange = (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = () => {
-    // Show the image in chat
-    addMessage('user', reader.result, true);
 
-    // Search Google Images with the uploaded image
-    // This uses Google Lens (works in Chrome)
-    const googleLensUrl = `https://lens.google.com/upload`;
-    // Open Google Lens upload page in a new tab
-    window.open(googleLensUrl, '_blank');
-    // Optionally, you can show a message in chat
-    addMessage('bot', 'Searching Google for your image...');
-  };
-  reader.readAsDataURL(file);
-};
-      
+
       
     // Update DOM
     addChat(input, product);
