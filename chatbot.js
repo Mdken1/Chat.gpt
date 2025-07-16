@@ -211,32 +211,6 @@ imageUpload.onchange = (e) => {
     addChat(input, product);
   }
 
-async function handleUserInput(userInput) {
-  const customResponses = {
-    "hello": "Hi there!",
-    "help": "Here's what I can help you with..."
-    // Add your predefined commands here
-  };
 
-  if (customResponses[userInput.toLowerCase()]) {
-    return customResponses[userInput.toLowerCase()];
-  } else {
-    // fallback to ChatGPT
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer YOUR_OPENAI_API_KEY"
-      },
-      body: JSON.stringify({
-        model: "gpt-3.5-turbo",
-        messages: [{ role: "user", content: userInput }]
-      })
-    });
-
-    const data = await response.json();
-    return data.choices.message.content;
-  }
-}
 
   
