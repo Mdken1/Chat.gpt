@@ -271,3 +271,33 @@ imageUpload.onchange = (e) => {
   reader.readAsDataURL(file);
 };
           imgBtn.onclick = () => imageUpload.click();
+
+
+
+  const coronavirus = ["Please stay home", "Wear a mask", "Fortunately, I don't have COVID", "These are uncertain times"]
+javascript
+function output(input) {
+  let product;
+
+  let text = input.toLowerCase().replace(/[^\w\s]/gi, "").replace(/[\d]/gi, "").trim();
+  text = text.replace(/ a /g, " ").replace(/i feel /g, "").replace(/whats/g, "what is").replace(/please /g, "").replace(/ please/g, "").replace(/r u/g, "are you");
+
+  const matched = compare(prompts, replies, text);
+
+  if (matched) {
+    product = matched;
+  } else if (text.match(/thank/gi)) {
+    product = "You're welcome!";
+  } else if (text.match(/(corona|covid|virus)/gi)) {
+    product = coronavirus[Math.floor(Math.random() * coronavirus.length)];
+  } else {
+    product = "Hmm... I’ll search that for you online.";
+    const query = encodeURIComponent(input);
+    const cx = "c0293a1511a764663";
+    setTimeout(() => {
+      window.open(`https://cse.google.com/cse?cx=${cx}#gsc.tab=0&gsc.q=${query}`, "_blank");
+    }, 1000);
+  }
+
+  addChat(input, product);
+}
