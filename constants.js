@@ -1,4 +1,3 @@
-
 // Options the user could type in
 const prompts = [
   ["hi","hiii", "hey", "hello", "good morning", "good afternoon"],
@@ -139,7 +138,7 @@ function addMessage(sender, text, isImage = false) {
     span.innerText = text;
   }
   const avatar = document.createElement('img');
-  avatar.src = sender === 'user' ? 'use.jpg' : 'chatbotimg.jpg';
+  avatar.src = sender === 'user' ? 'user.jpg' : 'bot.jpg';
   avatar.className = 'avatar';
   if (sender === 'user') {
     msgDiv.append(span, avatar);
@@ -170,6 +169,12 @@ async function output(input) {
     product = "You're welcome!";
   } else if (text.match(/(corona|covid|virus)/gi)) {
     product = coronavirus[Math.floor(Math.random() * coronavirus.length)];
+  } else if (text.includes("meaning") || text.includes("define") || text.includes("definition")) {
+    product = "Searching Google for the meaning...";
+    const query = encodeURIComponent(input);
+    setTimeout(() => {
+      window.open(`https://www.google.com/search?q=${query}+meaning`, "_blank");
+    }, 1000);
   } else {
     // Fallback to ChatGPT
     product = await handleUserInput(input);
@@ -187,7 +192,7 @@ async function handleUserInput(userInput) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `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`
+        "Authorization": `Bearer ${apiKey}`
       },
       body: JSON.stringify({
         model: "gpt-3.5-turbo",
@@ -248,55 +253,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const reader = new FileReader();
     reader.onload = () => {
       addMessage('user', reader.result, true);
-      output("Image uploaded"); // Optionally trigger bot response
+
+      // Open Google Lens for image search
+      const googleLensUrl = `https://lens.google.com/upload`;
+      window.open(googleLensUrl, '_blank');
+      addMessage('bot', 'Searching Google for your image...');
     };
     reader.readAsDataURL(file);
   };
 });
-imageUpload.onchange = (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = () => {
-    // Show the image in chat
-    addMessage('user', reader.result, true);
-
-    // Search Google Images with the uploaded image
-    // This uses Google Lens (works in Chrome)
-    const googleLensUrl = `https://lens.google.com/upload`;
-    // Open Google Lens upload page in a new tab
-    window.open(googleLensUrl, '_blank');
-    // Optionally, you can show a message in chat
-    addMessage('bot', 'Searching Google for your image...');
-  };
-  reader.readAsDataURL(file);
-};
-
-
-const coronavirus = ["Please stay home", "Wear a mask", "Fortunately, I don't have COVID", "These are uncertain times"]
-javascript
-function output(input) {
-  let product;
-
-  let text = input.toLowerCase().replace(/[^\w\s]/gi, "").replace(/[\d]/gi, "").trim();
-  text = text.replace(/ a /g, " ").replace(/i feel /g, "").replace(/whats/g, "what is").replace(/please /g, "").replace(/ please/g, "").replace(/r u/g, "are you");
-
-  const matched = compare(prompts, replies, text);
-
-  if (matched) {
-    product = matched;
-  } else if (text.match(/thank/gi)) {
-    product = "You're welcome!";
-  } else if (text.match(/(corona|covid|virus)/gi)) {
-    product = coronavirus[Math.floor(Math.random() * coronavirus.length)];
-  } else {
-    product = "Hmm... I’ll search that for you online.";
-    const query = encodeURIComponent(input);
-    const cx = "c0293a1511a764663";
-    setTimeout(() => {
-      window.open(`https://cse.google.com/cse?cx=${cx}#gsc.tab=0&gsc.q=${query}`, "_blank");
-    }, 1000);
-  }
-
-  addChat(input, product);
-}
